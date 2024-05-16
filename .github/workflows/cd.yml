@@ -1,0 +1,29 @@
+on: 
+    push:
+      branches:
+        - main
+    workflow_dispatch:     
+name: Deploy website on Donweb
+  
+jobs:
+    run_pull:
+      name: Deploy
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: executing remote ssh commands using ssh keys
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.SSH_HOST }}
+            username: ${{ secrets.SSH_USERNAME }}
+            password: ${{ secrets.SSH_PASSWORD }}
+            port: ${{ secrets.SSH_PORT }}
+            script: |
+                export NVM_DIR=~/.nvm 
+                source ~/.nvm/nvm.sh   
+                cd /home/radamantium/apps/scraping-server
+                git pull origin master
+                git fetch
+                git checkout ${{ secrets.MAIN_BRANCH }}
+                git pull
+                npm install
