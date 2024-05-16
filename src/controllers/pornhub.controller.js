@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes"
 
 export class PornHubController{
     async pornHubApi(req, res, next){
+        try{
         const pornhub = new PornHub()
         const models = await pornhub.pornstarList({
             page: 1,
@@ -11,5 +12,11 @@ export class PornHubController{
         })
 
         res.status(StatusCodes.OK).json({ models: models })
+    }catch(err){
+        return next({
+            status: StatusCodes.BAD_REQUEST,
+            message: 'Something went wrong'
+        })
+    }
     }
 }

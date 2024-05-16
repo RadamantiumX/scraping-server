@@ -11,11 +11,12 @@ const PORT = 3000
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cors())
-app.use('/phub', pornhubRouter)
+
 
 app.get('/', (req, res)=>{
     res.status(200).json({ message: "Server On" })
 })
+app.use('/phub', pornhubRouter)
 
 app.listen(PORT)
 console.log(`Server started on http://localhost:${PORT}`)
