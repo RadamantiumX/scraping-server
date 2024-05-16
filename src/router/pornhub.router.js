@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { PornHubController } from "../controllers/pornhub.controller";
+import { PornHubController } from "../controllers/pornhub.controller.js";
 
 const pornhubRouter = Router()
 const pornhubController = new PornHubController()

@@ -1,7 +1,7 @@
 import express, {json} from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
-import pornhubRouter from './src/router/pornhub.router'
+import pornhubRouter from './src/router/pornhub.router.js'
 
 
 const app = express()
