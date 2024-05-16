@@ -3,13 +3,16 @@ import { StatusCodes } from "http-status-codes"
 
 export class PornHubController{
     async pornHubApi(req, res, next){
+
         try{
+
         const pornhub = new PornHub()
+        const token = await pornhub.getToken()
         const models = await pornhub.pornstarList({
             page: 1,
             gender: 'female',
             order: 'Most Popular'
-        })
+        },{token})
 
         res.status(StatusCodes.OK).json({ models: models })
     }catch(err){
