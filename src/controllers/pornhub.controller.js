@@ -6,7 +6,7 @@ export class PornHubController{
     async pornHubApi(req, res, next){
         
         try{
-        const proxy = 'https://195.225.142.169:8080'
+        const proxy = 'https://162.241.204.101:60526'
         const httpsAgent =  new HttpsProxyAgent(proxy)
         const pornhub = new PornHub()
          pornhub.setAgent(httpsAgent)
