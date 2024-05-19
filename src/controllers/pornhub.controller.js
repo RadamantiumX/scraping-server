@@ -1,13 +1,15 @@
 import { PornHub } from "pornhub.js";
 import { StatusCodes } from "http-status-codes"
+import { HttpsProxyAgent } from "https-proxy-agent";
 
 export class PornHubController{
     async pornHubApi(req, res, next){
-
+        
         try{
-
+        const proxy = 'https://195.225.142.169:8080'
+        const httpsAgent =  new HttpsProxyAgent(proxy)
         const pornhub = new PornHub()
-        // const token = await pornhub.getToken()
+         pornhub.setAgent(httpsAgent)
         const models = await pornhub.pornstarList({
             page: 1,
             gender: 'female',
