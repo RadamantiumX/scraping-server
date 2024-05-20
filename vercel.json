@@ -11,5 +11,10 @@
         "src": "/(.*)",
         "dest": "/"
       }
-    ]
+    ],
+    "functions": {
+       "utils.js": {
+         "includeFiles": "models.json"
+       }
+    }
   }
