@@ -5,7 +5,7 @@ const pornhubRouter = Router()
 const pornhubController = new PornHubController()
 
 pornhubRouter.get('/models', pornhubController.pornHubApi)
-pornhubRouter.get('/test', pornhubController.pornTest)
+pornhubRouter.get('/data', pornhubController.pornHubData)
 
 
 export default pornhubRouter
