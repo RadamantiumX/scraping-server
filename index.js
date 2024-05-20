@@ -2,7 +2,7 @@ import express, {json} from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import pornhubRouter from './src/router/pornhub.router.js'
-
+import 'dotenv/config'
 
 
 const app = express()
