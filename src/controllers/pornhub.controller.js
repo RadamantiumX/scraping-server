@@ -1,6 +1,7 @@
 import { PornHub } from "pornhub.js";
 import { StatusCodes } from "http-status-codes"
-import { PhubModel } from "../models/models_page_1.js";
+import { PhubModel } from "../models/phubModels.js";
+import fs from 'node:fs'
 
 
 export class PornHubController{
@@ -8,14 +9,27 @@ export class PornHubController{
     async pornHubApiModels(req, res, next){
         
         try{    
+        const loaded = 10
+        
         const pornhub = new PornHub()
-        const models = await pornhub.pornstarList({
-            page: 1,
+        for(let i = 1; i < loaded; i++){
+           let filePath = `../../data/responses/response_${i}.json` 
+           const models = await pornhub.pornstarList({
+            page: i,
             gender: 'female',
             order: 'Most Popular'
-        })
+        }) 
+        let jsonData = JSON.stringify(models)
+          try{
+             fs.writeFileSync(filePath, jsonData)
+             console.log('JSON is saved!')
+          }catch(err){
+            console.log('Error in this request', err)
+          }
+        }
+        
 
-        res.status(StatusCodes.OK).json({ models: models })
+        res.status(StatusCodes.OK).json({ message: 'done' })
     }catch(err){
         return next({
             status: StatusCodes.BAD_REQUEST,
