@@ -1,6 +1,6 @@
 import { readJSON } from "../../utils.js";
 
-const modelsPage1 = readJSON("./models.json")
+const modelsPage1 = readJSON("./data/modelsPages/models.json")
 
 
 
