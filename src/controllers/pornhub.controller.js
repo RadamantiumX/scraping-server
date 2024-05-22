@@ -5,7 +5,7 @@ import { PhubModel } from "../models/models_page_1.js";
 
 export class PornHubController{
 
-    async pornHubApi(req, res, next){
+    async pornHubApiModels(req, res, next){
         
         try{    
         const pornhub = new PornHub()
@@ -24,7 +24,7 @@ export class PornHubController{
     }
     }
 
-    async pornHubData(req, res, next){
+    async pornHubDataModels(req, res, next){
         try{
             const models = await PhubModel.getAll()
 
@@ -36,6 +36,28 @@ export class PornHubController{
             })
         }
     }
+   
+    async pornHubApiPics(req, res, next){
+        try{    
+            const pornhub = new PornHub()
+           /* const pics = await pornhub.searchGif('popular', {
+                page: 1,
+                order: "Most Relevant",
+                sexualOrientation: "straight"
+            })*/
+
+            const page = await pornhub.route.mainPage()
+    
+            // res.status(StatusCodes.OK).json({ pics: pics })
+            res.status(StatusCodes.OK).json({ page: page })
+        }catch(err){
+            return next({
+                status: StatusCodes.BAD_REQUEST,
+                message: 'Something went wrong'
+            })
+        }
+    }
+    
 
     
 }
