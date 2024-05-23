@@ -44,8 +44,9 @@ export class PornHubController{
         try{
             const page = req.query.page
             const models = await PhubModel.getAll(page)
+            const count = 379
 
-            res.status(StatusCodes.OK).json(models)
+            res.status(StatusCodes.OK).json({models, count})
         }catch(err){
             return next({
                 status: StatusCodes.BAD_REQUEST,
