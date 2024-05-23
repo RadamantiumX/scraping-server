@@ -2,8 +2,8 @@ import { readJSON } from "../../utils.js";
 
 
 export class PhubModel{
-    static async getAll(){
-        const data = readJSON("./data/modelsPages/models-page-1.json")
+    static async getAll(page){
+        const data = readJSON(`./data/modelsPages/response_models_page_${page}.json`)
         return data
     }
 }

@@ -9,11 +9,11 @@ export class PornHubController{
     async pornHubApiModels(req, res, next){
         
         try{    
-        const loaded = 10
+        const loaded = 1001
         
         const pornhub = new PornHub()
         for(let i = 1; i < loaded; i++){
-           let filePath = `../../data/responses/response_${i}.json` 
+           let filePath = `../../data/responses/response_models_page_${i}.json` 
            const models = await pornhub.pornstarList({
             page: i,
             gender: 'female',
@@ -38,9 +38,12 @@ export class PornHubController{
     }
     }
 
+
+
     async pornHubDataModels(req, res, next){
         try{
-            const models = await PhubModel.getAll()
+            const page = req.query.page
+            const models = await PhubModel.getAll(page)
 
             res.status(StatusCodes.OK).json(models)
         }catch(err){
