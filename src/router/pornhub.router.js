@@ -5,7 +5,7 @@ const pornhubRouter = Router()
 const pornhubController = new PornHubController()
 
 pornhubRouter.get('/data', pornhubController.pornHubApiModels)
-pornhubRouter.get('/models', pornhubController.pornHubDataModels)
+pornhubRouter.get('/models/:page', pornhubController.pornHubDataModels)
 pornhubRouter.get('/pics', pornhubController.pornHubApiPics)
 
 

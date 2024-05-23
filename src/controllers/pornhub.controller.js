@@ -42,7 +42,7 @@ export class PornHubController{
 
     async pornHubDataModels(req, res, next){
         try{
-            const page = req.query.page
+            const page = req.params.page
             const models = await PhubModel.getAll(page)
             const count = 379
 

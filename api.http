@@ -1,2 +1,2 @@
 ### PornHUb
-GET http://localhost:3000/phub/models?page=2
+GET http://localhost:3000/phub/models/1
