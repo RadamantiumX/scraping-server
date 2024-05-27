@@ -6,4 +6,10 @@ export class PhubModel{
         const data = readJSON(`./data/modelsPages/response_models_page_${page}.json`)
         return data
     }
+
+    static async getModelsFilter(page, name){
+        const {data:data} = readJSON(`./data/modelsPages/response_models_page_${page}.json`)
+        const models = data.filter(d => d["name"] === name)
+        return models
+    }
 }
