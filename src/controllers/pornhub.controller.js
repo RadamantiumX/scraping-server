@@ -57,17 +57,17 @@ export class PornHubController{
 
     async pornHubFilterModels(req, res, next){
         try{
+            let results = []
             const name = req.params.name
             const count = 379
-            for (let i = 1; i < 379;i++){
+            for (let i = 1; i <= count;i++){
                 const models = await PhubModel.getModelsFilter(i, name)
-                if(models.length !== 0){
-                    res.status(StatusCodes.OK).json({models})
-                }
                 
-            }
-            
-
+                  res.status(StatusCodes.OK).json({models}) 
+                
+                }
+               
+              
         }catch(err){
             return next({
                 status: StatusCodes.BAD_REQUEST,
