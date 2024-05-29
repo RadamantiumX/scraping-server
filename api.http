@@ -4,3 +4,15 @@ GET http://localhost:3000/phub/models/1
 
 ### PornHub model filter
 GET http://localhost:3000/phub/models-filter/la
+
+
+### PornHub model videos
+GET http://localhost:3000/phub/model-videos
+
+
+### PornHub PICS
+GET http://localhost:3000/phub/pics
+
+
+### PorHub url data
+GET http://localhost:3000/phub/url

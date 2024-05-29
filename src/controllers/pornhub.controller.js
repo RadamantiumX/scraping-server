@@ -10,7 +10,7 @@ export class PornHubController{
         
         try{    
         const loaded = 1001
-        
+        // Saving JSON data
         const pornhub = new PornHub()
         for(let i = 1; i < loaded; i++){
            let filePath = `../../data/responses/response_models_page_${i}.json` 
@@ -37,8 +37,6 @@ export class PornHubController{
         })
     }
     }
-
-
 
     async pornHubDataModels(req, res, next){
         try{
@@ -81,16 +79,19 @@ export class PornHubController{
     async pornHubApiPics(req, res, next){
         try{    
             const pornhub = new PornHub()
-           /* const pics = await pornhub.searchGif('popular', {
+          /* const pics = await pornhub.searchGif('popular', {
                 page: 1,
                 order: "Most Relevant",
                 sexualOrientation: "straight"
             })*/
 
-            const page = await pornhub.route.mainPage()
+            const model = await pornhub.model('https://es.pornhub.com/model/sweetie-fox')
+
+           // const page = await pornhub.route.mainPage()
     
-            // res.status(StatusCodes.OK).json({ pics: pics })
-            res.status(StatusCodes.OK).json({ page: page })
+           // res.status(StatusCodes.OK).json({ pics: pics })
+            res.status(StatusCodes.OK).json( model )
+           // res.status(StatusCodes.OK).json({ page: page })
         }catch(err){
             return next({
                 status: StatusCodes.BAD_REQUEST,
@@ -99,6 +100,34 @@ export class PornHubController{
         }
     }
     
+ async PornHubUrlData(req, res, next){
+    try{
+        const results = []
+        let filePath = `../../data/responses/url_models.json`
+        for(let i = 1; i <= 379; i++){
+            const url = await PhubModel.getModelInfo(i)
+            results.push(...url) // Combine ARRAYS
+        }
+        
+        const jsonData = JSON.stringify(results)        
+          try{
+             fs.writeFileSync(filePath, jsonData)
+             console.log('JSON is saved!')
+          }catch(err){
+            console.log('Error in this request', err)
+          }
+        
+       // const length = results.length
 
+
+        res.status(StatusCodes.OK).json({ message: 'done' })
+
+    }catch(err){
+        return next({
+            status: StatusCodes.BAD_REQUEST,
+            message: 'Something went wrong'
+        })
+    }
+ }
     
 }

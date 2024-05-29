@@ -15,4 +15,13 @@ export class PhubModel{
 
         return models
     }
+
+    static async getModelInfo(page, name){
+        const {data: data} = readJSON(`./data/modelsPages/response_models_page_${page}.json`)
+        const info = data.map((item)=>{
+            return item.url
+        })
+
+        return info
+    }
 }
