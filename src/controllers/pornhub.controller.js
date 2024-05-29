@@ -57,13 +57,15 @@ export class PornHubController{
 
     async pornHubFilterModels(req, res, next){
         try{
-            let results = []
             const name = req.params.name
             const count = 379
             for (let i = 1; i <= count;i++){
                 const models = await PhubModel.getModelsFilter(i, name)
-                
-                  res.status(StatusCodes.OK).json({models}) 
+                if (models.length !== 0){
+                    const length = models.length
+                    res.status(StatusCodes.OK).json({models, length}) 
+                }
+                res.status(StatusCodes.OK).json({message: "No results found"})   
                 
                 }
                
