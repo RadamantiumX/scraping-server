@@ -1,6 +1,7 @@
 import { PornHub } from "pornhub.js";
 import { StatusCodes } from "http-status-codes"
 import { PhubModel } from "../models/phubModels.js";
+import { URL_MODELS } from "../const/url.js";
 import fs from 'node:fs'
 
 
@@ -79,19 +80,36 @@ export class PornHubController{
     async pornHubApiPics(req, res, next){
         try{    
             const pornhub = new PornHub()
-          /* const pics = await pornhub.searchGif('popular', {
-                page: 1,
-                order: "Most Relevant",
-                sexualOrientation: "straight"
-            })*/
+            let results = []
+            let filePath = `../../data/responses/model_index.json` 
+          for(let i = 0; i < 10; i++){ 
 
-            const model = await pornhub.model('https://es.pornhub.com/model/sweetie-fox')
+         const lastSlash = URL_MODELS[i].lastIndexOf('/') // Last slash of the URL
+         // const modelName = URL_MODELS[i].substring(lastSlash + 1)
+         
+         // Taken the reference on the URL ("pornstart" or "model")
+         const sliceCat = URL_MODELS[i].slice(24, lastSlash)
 
-           // const page = await pornhub.route.mainPage()
-    
-           // res.status(StatusCodes.OK).json({ pics: pics })
-            res.status(StatusCodes.OK).json( model )
-           // res.status(StatusCodes.OK).json({ page: page })
+         // Models & PornStars conditional
+         if (sliceCat.includes("model")){
+         const model = await pornhub.model(URL_MODELS[i])
+         results.push(model)
+        }
+         const model = await pornhub.pornstar(URL_MODELS[i])
+        results.push(model)
+
+
+      }
+
+       let jsonData = JSON.stringify(results)
+
+            try{
+                fs.writeFileSync(filePath, jsonData)
+                 console.log('JSON is saved!')
+              }catch(err){
+                console.log('Error in this request', err)
+             }
+            res.status(StatusCodes.OK).json( { message: 'Done' } )
         }catch(err){
             return next({
                 status: StatusCodes.BAD_REQUEST,
@@ -102,25 +120,25 @@ export class PornHubController{
     
  async PornHubUrlData(req, res, next){
     try{
-        const results = []
-        let filePath = `../../data/responses/url_models.json`
-        for(let i = 1; i <= 379; i++){
-            const url = await PhubModel.getModelInfo(i)
-            results.push(...url) // Combine ARRAYS
-        }
+        //const results = []
+       // let filePath = `../../data/responses/url_models.json`
+       // for(let i = 1; i <= 379; i++){
+            const url = await PhubModel.getModelInfo('https://www.pornhub.com/pornstar/angela-white')
+          //  results.push(...url) // Combine ARRAYS
+       // }
         
-        const jsonData = JSON.stringify(results)        
-          try{
-             fs.writeFileSync(filePath, jsonData)
-             console.log('JSON is saved!')
-          }catch(err){
-            console.log('Error in this request', err)
-          }
+       // const jsonData = JSON.stringify(results)        
+        //   try{
+        //      fs.writeFileSync(filePath, jsonData)
+        //      console.log('JSON is saved!')
+        //   }catch(err){
+        //     console.log('Error in this request', err)
+        //   }
         
        // const length = results.length
 
 
-        res.status(StatusCodes.OK).json({ message: 'done' })
+        res.status(StatusCodes.OK).json({ url })
 
     }catch(err){
         return next({
