@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes"
 import { PhubModel } from "../models/phubModels.js";
 import { URL_MODELS } from "../const/url.js";
 import fs from 'node:fs'
+// import { Worker } from "node:worker_threads";
 
 
 export class PornHubController{
@@ -54,6 +55,7 @@ export class PornHubController{
         }
     }
 
+    // Search Model Query
     async pornHubFilterModels(req, res, next){
         try{
             const name = req.params.name
@@ -77,65 +79,99 @@ export class PornHubController{
         }
     }
    
-    async pornHubApiPics(req, res, next){
+
+  // Create a JSON file with model info detailed
+    async pornHubApiData(req, res, next){
         try{    
             const pornhub = new PornHub()
             let results = []
-            let filePath = `../../data/responses/model_index.json` 
-          for(let i = 0; i < 10; i++){ 
+          
+           // Start FOR 
+          for(let i = 1000; i < 2000; i++){ 
+                  const lastSlash = URL_MODELS[i].lastIndexOf('/') // Last slash of the URL
+                  // const modelName = URL_MODELS[i].substring(lastSlash + 1)
+                
+                  const sliceCat = URL_MODELS[i].slice(24, lastSlash)
 
-         const lastSlash = URL_MODELS[i].lastIndexOf('/') // Last slash of the URL
-         // const modelName = URL_MODELS[i].substring(lastSlash + 1)
-         
-         // Taken the reference on the URL ("pornstart" or "model")
-         const sliceCat = URL_MODELS[i].slice(24, lastSlash)
-
-         // Models & PornStars conditional
-         if (sliceCat.includes("model")){
-         const model = await pornhub.model(URL_MODELS[i])
-         results.push(model)
-        }
-         const model = await pornhub.pornstar(URL_MODELS[i])
-        results.push(model)
-
-
-      }
-
-       let jsonData = JSON.stringify(results)
-
-            try{
-                fs.writeFileSync(filePath, jsonData)
-                 console.log('JSON is saved!')
-              }catch(err){
-                console.log('Error in this request', err)
+                  // Models & PornStars conditional
+                  if (sliceCat === "model"){
+                     const model = await pornhub.model(URL_MODELS[i])
+                     console.log(i)
+                     results.push({name:model.name,about:model.about, avatar:model.avatar,gender: model.gender,birthPlace: model.birthPlace, height: model.height, weight: model.weight})
+                  
+                   }else{
+                     const model = await pornhub.pornstar(URL_MODELS[i])
+                     console.log(i)
+                      results.push({name:model.name,about:model.about, avatar:model.avatar,gender: model.gender,birthPlace: model.birthPlace, height: model.height, weight: model.weight})
+                  
+                }
              }
+             // End FOR
+
+             let filePath = `../../data/responses/model-info-index.json`
+             let jsonData = JSON.stringify(results)
+             try{
+                fs.writeFileSync(filePath, jsonData)
+                console.log('JSON is saved!')
+                
+               }catch(err){
+                   console.log('Error in this request', err)
+             }
+
+       
             res.status(StatusCodes.OK).json( { message: 'Done' } )
-        }catch(err){
+            }catch(err){
             return next({
                 status: StatusCodes.BAD_REQUEST,
                 message: 'Something went wrong'
             })
         }
     }
+    /*
+    ************Example Response (empty) Ref: pornHubApiData()*************
+    {
+        "name": "",
+        "about": "",
+        "bio": "",
+        "avatar": "",
+        "cover": "",
+        "rank": 0,
+        "verified": false,
+        "awarded": false,
+        "premium": false,
+        "subscribers": 0,
+        "featuredIn": [],
+        "uploadedVideoCount": 0,
+        "taggedVideoCount": 0,
+        "socials": {},
+        "uploadedVideos": [],
+        "mostRecentVideos": []
+    }
+    ************************************************
     
+    */ 
+
+
+
+
  async PornHubUrlData(req, res, next){
     try{
-        //const results = []
-       // let filePath = `../../data/responses/url_models.json`
-       // for(let i = 1; i <= 379; i++){
+        const results = []
+       let filePath = `../../data/responses/url_models.json`
+       for(let i = 1; i <= 379; i++){
             const url = await PhubModel.getModelInfo('https://www.pornhub.com/pornstar/angela-white')
-          //  results.push(...url) // Combine ARRAYS
-       // }
+           results.push(...url) // Combine ARRAYS
+       }
         
-       // const jsonData = JSON.stringify(results)        
-        //   try{
-        //      fs.writeFileSync(filePath, jsonData)
-        //      console.log('JSON is saved!')
-        //   }catch(err){
-        //     console.log('Error in this request', err)
-        //   }
+       const jsonData = JSON.stringify(results)        
+          try{
+             fs.writeFileSync(filePath, jsonData)
+             console.log('JSON is saved!')
+          }catch(err){
+            console.log('Error in this request', err)
+          }
         
-       // const length = results.length
+       const length = results.length
 
 
         res.status(StatusCodes.OK).json({ url })

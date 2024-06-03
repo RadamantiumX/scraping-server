@@ -32,3 +32,11 @@ In this case we use a JSON server file, for statics data. The configuration is t
 ```
 
 Include the "config" key, and set the value with file name inside.
+
+## COMBINE JSON WITH COMMAND LINE
+
+First Install JQ command with chocollatey
+
+```bash
+jq -s . json-file-1.json json-file-2.json > combined-files.json
+```

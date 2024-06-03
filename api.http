@@ -10,9 +10,17 @@ GET http://localhost:3000/phub/models-filter/la
 GET http://localhost:3000/phub/model-videos
 
 
-### PornHub PICS
-GET http://localhost:3000/phub/pics
+### PornHub Heavy Data
+GET http://localhost:3000/phub/loop-data
 
 
 ### PorHub url data
 GET http://localhost:3000/phub/url
+
+
+### RED TUBE
+GET https://api.redtube.com/?data=redtube.Videos.searchVideos&output=json&search=angela+white&ordering=newest
+
+
+### LOCAL REDTUBE
+GET http://localhost:3000/rtube/model
