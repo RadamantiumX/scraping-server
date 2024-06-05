@@ -8,20 +8,31 @@ export class PhubModel{
     }
 
     static async getModelsFilter(page, name){
-        const {data:data} = readJSON(`./data/modelsPages/response_models_page_${page}.json`)
-        const models = data.filter((d) => {
+        const {data:data} = await readJSON(`./data/modelsPages/response_models_page_${page}.json`)
+        const models = await data.filter((d) => {
            return d["name"].toLowerCase().includes(name.toLowerCase()) 
         })
 
         return models
     }
 
-    static async getModelInfo(page, name){
+    static async getModelInfoURL(page){
         const {data: data} = readJSON(`./data/modelsPages/response_models_page_${page}.json`)
         const info = data.map((item)=>{
             return item.url
         })
 
         return info
+    }
+
+    // Return model info detail
+    static async getModelInfo(name, page){
+        
+          const data = await readJSON(`./data/modelIndex/${page}-model-info-index.json`)
+
+           const modelInfo = await data.find(model => model.name.toLowerCase() === name.toLowerCase())
+
+           return modelInfo
+        
     }
 }

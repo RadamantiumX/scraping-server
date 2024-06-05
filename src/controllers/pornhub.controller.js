@@ -87,7 +87,7 @@ export class PornHubController{
             let results = []
           
            // Start FOR 
-          for(let i = 1000; i < 2000; i++){ 
+          for(let i = 7000; i < 9000; i++){ 
                   const lastSlash = URL_MODELS[i].lastIndexOf('/') // Last slash of the URL
                   // const modelName = URL_MODELS[i].substring(lastSlash + 1)
                 
@@ -97,12 +97,12 @@ export class PornHubController{
                   if (sliceCat === "model"){
                      const model = await pornhub.model(URL_MODELS[i])
                      console.log(i)
-                     results.push({name:model.name,about:model.about, avatar:model.avatar,gender: model.gender,birthPlace: model.birthPlace, height: model.height, weight: model.weight})
+                     results.push({name:model.name,cover: model.cover, about:model.about, avatar:model.avatar,gender: model.gender,birthPlace: model.birthPlace, height: model.height, weight: model.weight})
                   
                    }else{
                      const model = await pornhub.pornstar(URL_MODELS[i])
                      console.log(i)
-                      results.push({name:model.name,about:model.about, avatar:model.avatar,gender: model.gender,birthPlace: model.birthPlace, height: model.height, weight: model.weight})
+                      results.push({name:model.name,cover: model.cover, about:model.about, avatar:model.avatar,gender: model.gender,birthPlace: model.birthPlace, height: model.height, weight: model.weight})
                   
                 }
              }
@@ -153,13 +153,13 @@ export class PornHubController{
 
 
 
-
+// Only for get data url from the JSON file
  async PornHubUrlData(req, res, next){
     try{
         const results = []
        let filePath = `../../data/responses/url_models.json`
        for(let i = 1; i <= 379; i++){
-            const url = await PhubModel.getModelInfo('https://www.pornhub.com/pornstar/angela-white')
+            const url = await PhubModel.getModelInfoURL('https://www.pornhub.com/pornstar/angela-white')
            results.push(...url) // Combine ARRAYS
        }
         
@@ -175,6 +175,26 @@ export class PornHubController{
 
 
         res.status(StatusCodes.OK).json({ url })
+
+    }catch(err){
+        return next({
+            status: StatusCodes.BAD_REQUEST,
+            message: 'Something went wrong'
+        })
+    }
+ }
+
+ // Search Model Info
+ async PornHubModelInfo(req, res, next){
+    try{
+        const name = req.params.name
+
+        for(let i = 1; i <= 4; i++){
+            const model = await PhubModel.getModelInfo(name.replace("-", " "), i)
+            if (model){
+            res.status(StatusCodes.OK).json(model)
+          }
+        }
 
     }catch(err){
         return next({
