@@ -4,6 +4,6 @@ import { RedTubeController } from "../controllers/redtube.controller.js";
 const redtubeRouter = Router()
 const redtubeController = new RedTubeController()
 
-redtubeRouter.get('/model',redtubeController.redtubeModels)
+redtubeRouter.get('/model/:name',redtubeController.redtubeModels)
 
 export default redtubeRouter

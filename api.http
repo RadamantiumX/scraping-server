@@ -19,11 +19,11 @@ GET http://localhost:4000/phub/url
 
 
 ### RED TUBE
-GET https://api.redtube.com/?data=redtube.Videos.searchVideos&output=json&search=angela+white&ordering=newest
+GET https://api.redtube.com/?data=redtube.Videos.searchVideos&output=json&search=angela+white&ordering=newest&thumbsize=big
 
 
-### LOCAL REDTUBE
-GET http://localhost:4000/rtube/model
+### LOCAL REDTUBE MODEL VIDEOS
+GET http://localhost:4000/rtube/model/sweetie-fox
 
 ### Model Info detailed PORNHUB
 GET http://localhost:4000/phub/model-info/sweetie-fox
