@@ -10,6 +10,7 @@ pornhubRouter.get('/models-filter/:name', pornhubController.pornHubFilterModels)
 pornhubRouter.get('/loop-data', pornhubController.pornHubApiData)
 pornhubRouter.get('/url', pornhubController.PornHubUrlData)
 pornhubRouter.get('/model-info/:name', pornhubController.PornHubModelInfo)
-
+pornhubRouter.get('/test', pornhubController.someTestOnPhub)
+pornhubRouter.get('/test2', pornhubController.anotherTestOnPhub)
 
 export default pornhubRouter

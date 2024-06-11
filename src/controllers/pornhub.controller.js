@@ -40,6 +40,39 @@ export class PornHubController{
     }
     }
 
+    async someTestOnPhub(req, res, next){
+        try{
+            const pornhub = new PornHub()
+            const album = await pornhub.searchAlbum('Teen 18+', {
+                order: "Most Relevant",
+                page: 1,
+                
+            })
+            res.status(StatusCodes.OK).json(album)
+
+        }catch(err){
+            return next({
+                status: StatusCodes.BAD_REQUEST,
+                message: 'Something went wrong'
+            })
+        }
+    }
+
+    async anotherTestOnPhub(req, res, next){
+        try{
+            const pornhub = new PornHub()
+            const albumInfo = await pornhub.album('77656451')
+
+            res.status(StatusCodes.OK).json(albumInfo)
+
+        }catch(err){
+            return next({
+                status: StatusCodes.BAD_REQUEST,
+                message: 'Something went wrong'
+            })
+        }
+    }
+
     async pornHubDataModels(req, res, next){
         try{
             const page = req.params.page

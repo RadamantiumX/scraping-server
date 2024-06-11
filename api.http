@@ -28,3 +28,9 @@ GET http://localhost:4000/rtube/model/sweetie-fox
 ### Model Info detailed PORNHUB
 GET http://localhost:4000/phub/model-info/sweetie-fox
 
+
+### Some test on PHUB API
+GET http://localhost:4000/phub/test
+
+### Another test on PHUB API
+GET http://localhost:4000/phub/test2
