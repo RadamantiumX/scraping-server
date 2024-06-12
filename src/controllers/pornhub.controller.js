@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes"
 import { PhubModel } from "../models/phubModels.js";
 import { URL_MODELS } from "../const/url.js";
 import fs from 'node:fs'
+import { TAGS } from "../../constants.js";
 // import { Worker } from "node:worker_threads";
 
 
@@ -43,12 +44,26 @@ export class PornHubController{
     async someTestOnPhub(req, res, next){
         try{
             const pornhub = new PornHub()
-            const album = await pornhub.searchAlbum('Teen 18+', {
+            const tag = req.params.tag
+                for(let i = 1; i <= 50; i++){
+              let filePath = `../../data/responses/${tag.toLowerCase()}_pics/porn_pics_${tag.toLowerCase()}_page_${i}.json`   
+              const album = await pornhub.searchAlbum(tag , {
                 order: "Most Relevant",
-                page: 1,
-                
-            })
-            res.status(StatusCodes.OK).json(album)
+                page: i,           
+              })  
+
+              let jsonData = JSON.stringify(album)
+              try{
+                fs.writeFileSync(filePath, jsonData)
+                console.log('JSON is saved!')
+             }catch(err){
+                console.log('Error in this request', err)
+             }
+            }
+            
+            
+            
+            res.status(StatusCodes.OK).json({ message: "Done!" })
 
         }catch(err){
             return next({

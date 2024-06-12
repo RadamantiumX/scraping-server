@@ -1,0 +1,1 @@
+export const TAGS = ["Dick", "Hot", "Teen 18+", "Hentai", "Sex", "Boobs", "Babe", "Cum", "Blonde", "Milf", "Ebony"]

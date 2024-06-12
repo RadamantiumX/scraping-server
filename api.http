@@ -30,7 +30,7 @@ GET http://localhost:4000/phub/model-info/sweetie-fox
 
 
 ### Some test on PHUB API
-GET http://localhost:4000/phub/test
+GET http://localhost:4000/phub/test/Ebony
 
 ### Another test on PHUB API
 GET http://localhost:4000/phub/test2
