@@ -175,29 +175,7 @@ export class PornHubController{
             })
         }
     }
-    /*
-    ************Example Response (empty) Ref: pornHubApiData()*************
-    {
-        "name": "",
-        "about": "",
-        "bio": "",
-        "avatar": "",
-        "cover": "",
-        "rank": 0,
-        "verified": false,
-        "awarded": false,
-        "premium": false,
-        "subscribers": 0,
-        "featuredIn": [],
-        "uploadedVideoCount": 0,
-        "taggedVideoCount": 0,
-        "socials": {},
-        "uploadedVideos": [],
-        "mostRecentVideos": []
-    }
-    ************************************************
     
-    */ 
 
 
 
@@ -251,5 +229,20 @@ export class PornHubController{
         })
     }
  }
+
+ async PornHubPicTag(req, res, next){
+    try{
+        const page = 1
+        const tag = 'All'
+        const picsPage = await PhubModel.getPicsPages(tag, page)
+        res.status(StatusCodes.OK).json(picsPage)
+    }catch(err){
+        return next({
+            status: StatusCodes.BAD_REQUEST,
+            message: 'Something went wrong'
+        })
+    }
+ }
     
 }
+
