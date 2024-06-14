@@ -3,8 +3,12 @@ import { StatusCodes } from "http-status-codes"
 import { PhubModel } from "../models/phubModels.js";
 import { URL_MODELS } from "../const/url.js";
 import fs from 'node:fs'
-import { TAGS } from "../../constants.js";
+// import { TAGS } from "../../constants.js";
 // import { Worker } from "node:worker_threads";
+import process from "node:process";
+import path from "node:path";
+import { error } from "node:console";
+
 
 
 export class PornHubController{
@@ -232,10 +236,24 @@ export class PornHubController{
 
  async PornHubPicTag(req, res, next){
     try{
-        const page = 1
-        const tag = 'All'
+        const page = req.params.page
+        const tag = req.params.tag.toLowerCase()
+        const currentProjectPath = process.cwd()
+        const dataPath = path.join(currentProjectPath, `/data/pics/${tag}_pics`)
+    
         const picsPage = await PhubModel.getPicsPages(tag, page)
-        res.status(StatusCodes.OK).json(picsPage)
+        const data = picsPage.data
+        fs.promises.readdir(dataPath)
+          .then(files => {
+            console.log(files.length)
+            res.status(StatusCodes.OK).json({data, pages: files.length, currentPage: parseInt(page) })
+          })
+          .catch(err => {
+            console.log(err.message)
+          })
+
+       
+        
     }catch(err){
         return next({
             status: StatusCodes.BAD_REQUEST,
