@@ -12,6 +12,7 @@ pornhubRouter.get('/url', pornhubController.PornHubUrlData)
 pornhubRouter.get('/model-info/:name', pornhubController.PornHubModelInfo)
 pornhubRouter.get('/test/:tag', pornhubController.someTestOnPhub)
 pornhubRouter.get('/test2', pornhubController.anotherTestOnPhub)
+pornhubRouter.get('/test3', pornhubController.getAlbumFromScraping)
 pornhubRouter.get('/pics/:page/:tag',pornhubController.PornHubPicTag)
 
 export default pornhubRouter

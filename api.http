@@ -36,4 +36,7 @@ GET http://localhost:4000/phub/test/All
 GET http://localhost:4000/phub/test2
 
 ### PornHub Pics Page
-GET http://localhost:4000/phub/pics/2/Amateur
+GET http://localhost:4000/phub/pics/3/Amateur
+
+### Get album from scraping (test)
+GET http://localhost:4000/phub/test3
