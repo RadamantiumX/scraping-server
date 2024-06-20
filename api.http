@@ -40,3 +40,6 @@ GET http://localhost:4000/phub/pics/3/Amateur
 
 ### Get album from scraping (test)
 GET http://localhost:4000/phub/test3
+
+### Model Search FILTER
+GET https://scraping-server.vercel.app/phub/models-filter/sw

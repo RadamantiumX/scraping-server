@@ -86,10 +86,10 @@ export class PornHubController {
   async getAlbumFromScraping(req, res, next) {
     try {
       let results = [];
-      const tag = "Amateur";
-      const pages = 14;
+      const tag = "Ebony";
+      const pages = 9;
       const pornhub = new PornHub();
-      for(let i = 4; i <= pages; i++){
+      for(let i = 1; i <= pages; i++){
       const data = await PhubModel.getPicsPages(tag, i);
 
       for (let i = 0; i < data.data.length; i++) {
@@ -99,7 +99,7 @@ export class PornHubController {
       for (let i = 0; i < results.length; i++) {
         const slashedIndex = results[i].lastIndexOf("/");
         const albumId = results[i].slice(slashedIndex + 1);
-        let filePath = `../../data/albums/amateur/album_${albumId}.json`;
+        let filePath = `../../data/albums/ebony/album_${albumId}.json`;
        
         const albumInfo = await pornhub.album(albumId)
           .then((data)=>{
@@ -108,7 +108,7 @@ export class PornHubController {
               console.log("JSON is saved!");
           })
           .catch(err=>{
-            console.log(err)
+            console.log(`File ${albumId} is missing - Not Found 404 -`)
           })
         
 
@@ -151,8 +151,8 @@ export class PornHubController {
       for (let i = 1; i <= count; i++) {
         const models = await PhubModel.getModelsFilter(i, name);
         if (models.length !== 0) {
-          const length = models.length;
-          res.status(StatusCodes.OK).json({ models, length });
+         // const length = models.length;
+          res.status(StatusCodes.OK).json({ models });
         }
         res.status(StatusCodes.OK).json({ message: "No results found" });
       }
