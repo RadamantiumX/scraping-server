@@ -86,8 +86,8 @@ export class PornHubController {
   async getAlbumFromScraping(req, res, next) {
     try {
       let results = [];
-      const tag = "Hentai";
-      const pages = 45;
+      const tag = "Hot";
+      const pages = 15;
       const pornhub = new PornHub();
       for(let i = 1; i <= pages; i++){
       const data = await PhubModel.getPicsPages(tag, i);
@@ -99,7 +99,7 @@ export class PornHubController {
       for (let i = 0; i < results.length; i++) {
         const slashedIndex = results[i].lastIndexOf("/");
         const albumId = results[i].slice(slashedIndex + 1);
-        let filePath = `../../data/albums/hentai/album_${albumId}.json`;
+        let filePath = `../../data/albums/hot/album_${albumId}.json`;
        
         const albumInfo = await pornhub.album(albumId)
           .then((data)=>{
@@ -152,7 +152,7 @@ export class PornHubController {
         const models = await PhubModel.getModelsFilter(i, name);
         if (models.length !== 0) {
          // const length = models.length;
-          res.status(StatusCodes.OK).json({ models });
+          res.status(StatusCodes.OK).json(models);
         }
         res.status(StatusCodes.OK).json({ message: "No results found" });
       }
