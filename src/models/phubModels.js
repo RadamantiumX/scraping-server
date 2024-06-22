@@ -9,9 +9,11 @@ export class PhubModel{
 
     static async getModelsFilter(page, name){
         const {data:data} = await readJSON(`./data/modelsPages/response_models_page_${page}.json`)
-        const models = await data.filter((d) => {
-           return d["name"].toLowerCase().includes(name.toLowerCase()) 
-        })
+        const models = await data.filter(//(d) => {
+           //return d["name"].toLowerCase().includes(name.toLowerCase()) 
+        //}
+     item => item.name.toLowerCase().includes(name.toLowerCase()) 
+    )
 
         return models
     }

@@ -3,7 +3,7 @@ GET http://localhost:4000/phub/models/1
 
 
 ### PornHub model Search
-GET http://localhost:4000/phub/models-filter/la
+GET http://localhost:4000/phub/models-filter/f
 
 
 ### PornHub model videos
@@ -42,4 +42,4 @@ GET http://localhost:4000/phub/pics/3/Amateur
 GET http://localhost:4000/phub/test3
 
 ### Model Search FILTER
-GET https://scraping-server.vercel.app/phub/models-filter/la
+GET https://scraping-server.vercel.app/phub/models-filter/sw
