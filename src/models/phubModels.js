@@ -12,7 +12,7 @@ export class PhubModel{
         const models = await data.filter(//(d) => {
            //return d["name"].toLowerCase().includes(name.toLowerCase()) 
         //}
-     item => item.name.toLowerCase().includes(name.toLowerCase()) 
+       item => item.name.toLowerCase().includes(name.toLowerCase()) 
     )
 
         return models
