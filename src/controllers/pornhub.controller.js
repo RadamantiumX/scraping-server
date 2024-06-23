@@ -152,7 +152,7 @@ export class PornHubController {
         const models = await PhubModel.getModelsFilter(i, name);
         if (models.length !== 0) {
          // const length = models.length;
-          res.status(StatusCodes.OK).json({ models });
+          res.status(StatusCodes.OK).json({ models:models });
         }
         res.status(StatusCodes.OK).json({ message: "No results found" });
       }

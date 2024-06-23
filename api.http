@@ -42,4 +42,4 @@ GET http://localhost:4000/phub/pics/3/Amateur
 GET http://localhost:4000/phub/test3
 
 ### Model Search FILTER
-GET https://scraping-server.vercel.app/phub/models-filter/f
+GET https://scraping-server.vercel.app/phub/models-filter/sweetie
