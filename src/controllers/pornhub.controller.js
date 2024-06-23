@@ -151,15 +151,16 @@ export class PornHubController {
       for (let i = 1; i <= count; i++) {
         const models = await PhubModel.getModelsFilter(i, name);
         if (models.length !== 0) {
+          const response = JSON.stringify(models)
          // const length = models.length;
-          res.status(StatusCodes.OK).json({ models:models });
+          res.status(StatusCodes.OK).json({ response });
         }
         res.status(StatusCodes.OK).json({ message: "No results found" });
       }
     } catch (err) {
       return next({
         status: StatusCodes.BAD_REQUEST,
-        message: "Something went wrong",
+        message: err.message,
       });
     }
   }
