@@ -46,3 +46,6 @@ GET https://scraping-server.vercel.app/phub/models-filter/sweetie
 
 ### GET DATA FROM MONGODB REMOTE
 GET http://localhost:4000/phmongo/data
+
+### Testing on VERCEL from MONGODB
+GET https://scraping-server.vercel.app/phmongo/data

@@ -12,8 +12,8 @@ const client = new MongoClient(uri, {
 async function connect() {
     try{
         await client.connect()
-        const database = client.db('test')
-        return database.collection('signal')
+        const database = client.db('scrap')
+        return database.collection('models')
     }catch(error){
         console.error('Error to connect DB')
         console.error(error)
