@@ -16,3 +16,14 @@ pornhubRouter.get('/test3', pornhubController.getAlbumFromScraping)
 pornhubRouter.get('/pics/:page/:tag',pornhubController.PornHubPicTag)
 
 export default pornhubRouter
+
+
+// Admin MongoDB Donweb
+// db.createUser(
+//     {
+//     user: "radamantium",
+//     pwd: "seba2010",
+//     roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+//     }
+//     );
+// CONNECTION STRING MONGODB DONWEB: mongodb://149.50.135.133/

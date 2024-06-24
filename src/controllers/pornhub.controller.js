@@ -3,11 +3,9 @@ import { StatusCodes } from "http-status-codes";
 import { PhubModel } from "../models/phubModels.js";
 import { URL_MODELS } from "../const/url.js";
 import fs from "node:fs";
-// import { TAGS } from "../../constants.js";
-// import { Worker } from "node:worker_threads";
 import process from "node:process";
 import path from "node:path";
-import { error } from "node:console";
+
 
 export class PornHubController {
   async pornHubApiModels(req, res, next) {
