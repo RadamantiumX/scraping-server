@@ -1,5 +1,7 @@
 import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
-const uri = 'mongodb://149.50.135.133/'
+import { readJSON } from "../../utils.js";
+
+const uri = 'mongodb://eduarede:seba2010@149.50.135.133/'
 
 const client = new MongoClient(uri, {
     serverApi: {
@@ -23,9 +25,33 @@ async function connect() {
 
 
 export class PhubMongo{
-     static async getAllInfo(){
+     static async getAllInfo({id}){
         const db = await connect()
+        const objectId = new ObjectId(id) 
+        return db.findOne({_id: objectId})
+     }
 
-        return db.find().toArray()
+     static async getFilter(){
+        const db = await connect()
+        return db.find({name: "Sweetie Fox"})
+     }
+
+     static async create({item}){
+        const db = await connect()
+        const { insertedId } = await db.insertOne(item)
+        return "done"
      }
 }
+
+/** 
+ * Page MODELS (KEY-VALUE)
+ * 
+ * {
+      "paging": {
+         "current": 1,
+         "maxPage": 10,
+         "isEnd": false  
+   }
+ * 
+ * 
+*/
