@@ -44,7 +44,7 @@ GET http://localhost:4000/phub/test3
 ### Model Search FILTER
 GET https://scraping-server.vercel.app/phub/models-filter/sweetie
 
-### GET DATA FROM MONGODB 
+### GET ALL DATA (MODELS) FROM MONGODB 
 GET http://localhost:4000/phmongo/data
 
 ### Search with MONGODB (local)

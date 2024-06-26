@@ -5,7 +5,10 @@ import { PornHub } from "pornhub.js";
 export class MongoPhubController{
     async modelsFromMongoDb(req, res, next){
         try{
-            const models = await PhubMongo.getAllInfo()
+            const requestFromClient = 2
+            const fixedPage = requestFromClient - 1
+            const limit = 20
+            const models = await PhubMongo.getAllInfo(limit,fixedPage)
             res.status(StatusCodes.OK).json(models)
             
         }catch(error){
@@ -31,7 +34,7 @@ export class MongoPhubController{
     async getDataAndSave(req, res, next){
         try{
             const pornhub = new PornHub
-            for (let i = 2; i <= 379; i++){
+            for (let i = 1; i <= 379; i++){
                 const models = await pornhub.pornstarList({
                 page: i,
                 gender: "female",
@@ -52,9 +55,6 @@ export class MongoPhubController{
             }
             }
             
-                
-        
-
             res.status(StatusCodes.OK).json({message:'done'})
 
         }catch(error){
