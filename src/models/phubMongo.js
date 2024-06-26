@@ -31,14 +31,24 @@ export class PhubMongo{
         return db.findOne({_id: objectId})
      }
 
-     static async getFilter(){
+     static async getFilter(query){
         const db = await connect()
-        return db.find({name: "Sweetie Fox"})
-     }
+        const search = db.find({name: { $regex: query }})
+        return search.toArray()
+    }
 
-     static async create({item}){
+     static async create({name, url, views, videoNum, rank, photo, verified, awarded}){
         const db = await connect()
-        const { insertedId } = await db.insertOne(item)
+        const { insertedId } = await db.insertOne({
+            name: name, 
+            url: url, 
+            views: url, 
+            videoNum: videoNum, 
+            rank: rank, 
+            photo: photo, 
+            verified: verified, 
+            awarded: awarded
+        })
         return "done"
      }
 }

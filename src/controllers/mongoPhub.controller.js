@@ -17,8 +17,8 @@ export class MongoPhubController{
 
     async searchTest(req, res, next){
         try{
-            // const query = 'Sweetie'
-            const models = await PhubMongo.getFilter()
+            const query = 'Sweetie'
+            const models = await PhubMongo.getFilter(query)
 
             res.status(StatusCodes.OK).json(models)
 
@@ -31,14 +31,28 @@ export class MongoPhubController{
     async getDataAndSave(req, res, next){
         try{
             const pornhub = new PornHub
-            const models = await pornhub.pornstarList({
-                page: 1,
+            for (let i = 2; i <= 379; i++){
+                const models = await pornhub.pornstarList({
+                page: i,
                 gender: "female",
                 order: "Most Popular",
               });
 
+            for (let i = 0; i < models.data.length; i++){
+                const newRecords = PhubMongo.create({
+                    name: models.data[i].name, 
+                    url: models.data[i].url,
+                    views: models.data[i].views, 
+                    videoNum: models.data[i].videoNum, 
+                    rank: models.data[i].rank, 
+                    photo: models.data[i].photo, 
+                    verified: models.data[i].verified, 
+                    awarded: models.data[i].awarded
+                })
+            }
+            }
             
-                const newRecords = PhubMongo.create(models.data)
+                
         
 
             res.status(StatusCodes.OK).json({message:'done'})
