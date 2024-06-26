@@ -1,5 +1,5 @@
 import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
-import { readJSON } from "../../utils.js";
+
 
 const uri = 'mongodb://eduarede:seba2010@149.50.135.133/'
 
@@ -25,24 +25,40 @@ async function connect() {
 
 
 export class PhubMongo{
-     static async getAllInfo({id}){
-        const db = await connect()
-        const objectId = new ObjectId(id) 
-        return db.findOne({_id: objectId})
+
+    // All data
+     static async getAllInfo(){
+        try{
+            const db = await connect()
+            const results = db.find().limit(20)
+            return results.toArray()
+        }catch(error){
+            console.error('Failed to request DB')
+            console.error(error)
+        }
+        
+      
      }
 
      static async getFilter(query){
+        try{
         const db = await connect()
         const search = db.find({name: { $regex: query }})
         return search.toArray()
+       }catch(error){
+        console.error('Failed to request DB')
+        console.error(error)
+       }
     }
 
+    // Only for get data
      static async create({name, url, views, videoNum, rank, photo, verified, awarded}){
+        try{
         const db = await connect()
         const { insertedId } = await db.insertOne({
             name: name, 
             url: url, 
-            views: url, 
+            views: views, 
             videoNum: videoNum, 
             rank: rank, 
             photo: photo, 
@@ -50,6 +66,10 @@ export class PhubMongo{
             awarded: awarded
         })
         return "done"
+    } catch (error) {
+        console.error('Failed to request DB')
+        console.error(error)
+    }
      }
 }
 

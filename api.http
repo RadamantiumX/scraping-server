@@ -44,14 +44,14 @@ GET http://localhost:4000/phub/test3
 ### Model Search FILTER
 GET https://scraping-server.vercel.app/phub/models-filter/sweetie
 
-### GET DATA FROM MONGODB REMOTE
+### GET DATA FROM MONGODB 
 GET http://localhost:4000/phmongo/data
 
-### Testing on VERCEL from MONGODB
-GET https://scraping-server.vercel.app/phmongo/data
-
-### Search qith MONGODB
+### Search with MONGODB (local)
 GET http://localhost:4000/phmongo/query
 
 ### Adding Data
 GET http://localhost:4000/phmongo/models
+
+### Search with MONGODB data (prod)
+GET https://scraping-server.vercel.app/phmongo/query

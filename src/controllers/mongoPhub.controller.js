@@ -3,11 +3,11 @@ import { StatusCodes } from "http-status-codes";
 import { PornHub } from "pornhub.js";
 
 export class MongoPhubController{
-    async phubMongoTest(req, res, next){
+    async modelsFromMongoDb(req, res, next){
         try{
-            const id = '6679b2bc3c883933f63045e0'
-            const {data:data} = await PhubMongo.getAllInfo({id})
-            res.status(StatusCodes.OK).json(data)
+            const models = await PhubMongo.getAllInfo()
+            res.status(StatusCodes.OK).json(models)
+            
         }catch(error){
             console.error('Fail to get data')
             console.error(error)
@@ -15,9 +15,9 @@ export class MongoPhubController{
        
     }
 
-    async searchTest(req, res, next){
+    async searchModels(req, res, next){
         try{
-            const query = 'Sweetie'
+            const query = 'Sw'
             const models = await PhubMongo.getFilter(query)
 
             res.status(StatusCodes.OK).json(models)
