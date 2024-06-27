@@ -1,6 +1,8 @@
 ### PornHUb
 GET http://localhost:4000/phub/models/1
 
+### PornHub Models Pages
+GET http://localhost:4000/phub/models/1
 
 ### PornHub model Search
 GET http://localhost:4000/phub/models-filter/la
@@ -45,10 +47,10 @@ GET http://localhost:4000/phub/test3
 GET https://scraping-server.vercel.app/phub/models-filter/sweetie
 
 ### GET ALL DATA (MODELS) FROM MONGODB 
-GET http://localhost:4000/phmongo/data
+GET http://localhost:4000/phmongo/data/2
 
 ### Search with MONGODB (local)
-GET http://localhost:4000/phmongo/query
+GET http://localhost:4000/phmongo/search-models/Fun
 
 ### Adding Data
 GET http://localhost:4000/phmongo/models

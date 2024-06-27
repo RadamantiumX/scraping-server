@@ -30,17 +30,24 @@ export class PhubMongo{
      static async getAllInfo(per_page, current_page){
         try{
             const db = await connect()
-            const count = db.countDocuments()
             const results = db.find().skip(per_page * current_page).limit(per_page)
-            const current = current_page + 1
-            const totalPages = count / per_page
-            return {models: results.toArray(), totalResults: count, currentPage: current, totalPages: Math.ceil(totalPages)}
+            return results.toArray()
+        }catch(error){
+            console.error('Failed to request DB')
+            console.error(error)
+        }   
+      
+     }
+
+     static async lenghtDocuments(){
+        try{
+            const db = await connect()
+            const count = await db.countDocuments()
+            return count
         }catch(error){
             console.error('Failed to request DB')
             console.error(error)
         }
-        
-      
      }
 
      static async getFilter(query){

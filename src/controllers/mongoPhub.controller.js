@@ -5,11 +5,18 @@ import { PornHub } from "pornhub.js";
 export class MongoPhubController{
     async modelsFromMongoDb(req, res, next){
         try{
-            const requestFromClient = 2
-            const fixedPage = requestFromClient - 1
+            const page = parseInt(req.params.page)
+            const fixedIndex = page - 1
             const limit = 20
-            const models = await PhubMongo.getAllInfo(limit,fixedPage)
-            res.status(StatusCodes.OK).json(models)
+            const models = await PhubMongo.getAllInfo(limit,fixedIndex)
+            const count = await PhubMongo.lenghtDocuments()
+            const totalPages = Math.ceil(count / limit)
+            const paging = {
+                currentPage: page,
+                totalResults: count,
+                totalPages: totalPages,
+            }
+            res.status(StatusCodes.OK).json({data: models, paging: paging})
             
         }catch(error){
             console.error('Fail to get data')
@@ -20,7 +27,7 @@ export class MongoPhubController{
 
     async searchModels(req, res, next){
         try{
-            const query = 'Sw'
+            const query = req.params.query
             const models = await PhubMongo.getFilter(query)
 
             res.status(StatusCodes.OK).json(models)

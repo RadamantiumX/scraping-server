@@ -4,8 +4,8 @@ import { MongoPhubController } from "../controllers/mongoPhub.controller.js"
 const pornhubMongoRouter = Router()
 const mongoPhubController = new MongoPhubController()
 
-pornhubMongoRouter.get('/data', mongoPhubController.modelsFromMongoDb)
-pornhubMongoRouter.get('/query', mongoPhubController.searchModels)
+pornhubMongoRouter.get('/data/:page', mongoPhubController.modelsFromMongoDb) // Al data
+pornhubMongoRouter.get('/search-models/:query', mongoPhubController.searchModels) // Query model
 pornhubMongoRouter.get('/models', mongoPhubController.getDataAndSave)
 
 export default pornhubMongoRouter
