@@ -4,6 +4,7 @@ import cors from 'cors'
 import pornhubRouter from './src/router/pornhub.router.js'
 import redtubeRouter from './src/router/redtube.router.js'
 import pornhubMongoRouter from './src/router/phubMongo.router.js'
+import getDataRouter from './src/router/getData.router.js'
 import 'dotenv/config'
 
 
@@ -22,6 +23,7 @@ app.get('/', (req, res)=>{
 app.use('/phub', pornhubRouter)
 app.use('/rtube', redtubeRouter)
 app.use('/phmongo', pornhubMongoRouter)
+app.use('/get-data', getDataRouter)
 
 app.listen(PORT)
 console.log(`Server started on http://localhost:${PORT}`)
