@@ -56,4 +56,7 @@ GET http://localhost:4000/phmongo/search-models/Fun
 GET http://localhost:4000/phmongo/models
 
 ### Search with MONGODB data (prod)
-GET https://scraping-server.vercel.app/phmongo/query
+GET https://scraping-server.vercel.app/phmongo/search-models/sw
+
+### Get All data from DB (prod)
+GET https://scraping-server.vercel.app/phmongo/data/2
