@@ -2,7 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import { PornHub } from "pornhub.js";
 import fs from "node:fs";
 
-export class GetDataController{
+export class GetDataScrapController{
     async pornHubApiModels(req, res, next) {
         try {
           const loaded = 1001;

@@ -2,7 +2,7 @@ import { PhubMongo } from "../models/phubMongo.js";
 import { StatusCodes } from "http-status-codes";
 import { PornHub } from "pornhub.js";
 
-export class MongoPhubController{
+export class MongoPhubDataController{
     async modelsFromMongoDb(req, res, next){
         try{
             const page = parseInt(req.params.page)

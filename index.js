@@ -1,10 +1,10 @@
-import express, {json} from 'express'
+import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
-import pornhubRouter from './src/router/pornhub.router.js'
-import redtubeRouter from './src/router/redtube.router.js'
-import pornhubMongoRouter from './src/router/phubMongo.router.js'
-import getDataRouter from './src/router/getData.router.js'
+import pornhubDataRouter from './src/router/pornhubData.router.js'
+import redtubeDataRouter from './src/router/redtubeData.router.js'
+import pornhubMongoDataRouter from './src/router/phubMongoData.router.js'
+import getDataScrapDataRouter from './src/router/getScrapData.router.js'
 import 'dotenv/config'
 
 
@@ -20,10 +20,10 @@ app.use(cors())
 app.get('/', (req, res)=>{
     res.status(200).json({ message: "Server On" })
 })
-app.use('/phub', pornhubRouter)
-app.use('/rtube', redtubeRouter)
-app.use('/phmongo', pornhubMongoRouter)
-app.use('/get-data', getDataRouter)
+app.use('/phub', pornhubDataRouter)
+app.use('/rtube', redtubeDataRouter)
+app.use('/phmongo', pornhubMongoDataRouter)
+app.use('/get-data', getDataScrapDataRouter)
 
 app.listen(PORT)
 console.log(`Server started on http://localhost:${PORT}`)

@@ -1,7 +1,6 @@
 import { PornHub } from "pornhub.js";
 import { StatusCodes } from "http-status-codes";
 import { PhubModel } from "../models/phubModels.js";
-import { URL_MODELS } from "../const/url.js";
 import fs from "node:fs";
 import process from "node:process";
 import path from "node:path";

@@ -1,5 +1,4 @@
 import { StatusCodes } from "http-status-codes"
-import { PhubModel } from "../models/phubModels.js";
 
 export class RedTubeController{
     async redtubeModels(req, res, next){
