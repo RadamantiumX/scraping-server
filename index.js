@@ -5,7 +5,9 @@ import pornhubDataRouter from './src/router/pornhubData.router.js'
 import redtubeDataRouter from './src/router/redtubeData.router.js'
 import pornhubMongoDataRouter from './src/router/phubMongoData.router.js'
 import getDataScrapDataRouter from './src/router/getScrapData.router.js'
-import 'dotenv/config'
+// import 'dotenv/config'
+import dotenv from 'dotenv'
+dotenv.config()
 
 
 const app = express()
