@@ -120,6 +120,7 @@ export class PhubMongo{
         
     } 
 }
+  // Only for get data
 
 /** 
  * Page MODELS (KEY-VALUE)

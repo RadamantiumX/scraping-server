@@ -95,7 +95,7 @@ export class MongoPhubDataController{
       // Start FOR
       // Last SnapShot (let i = 13000; i < 15000; i++)
       // Total: 22359
-      for (let i = 17000; i < URL_MODELS.length; i++) {
+      for (let i = 17000; i <= URL_MODELS.length; i++) {
         const lastSlash = URL_MODELS[i].lastIndexOf("/"); // Last slash of the URL
         const sliceCat = URL_MODELS[i].slice(24, lastSlash);
 
