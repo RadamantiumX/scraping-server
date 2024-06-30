@@ -1,6 +1,7 @@
 import { PornHub } from "pornhub.js";
 import { StatusCodes } from "http-status-codes";
 import { PhubModel } from "../models/phubModels.js";
+import { PhubPics } from "../models/phubPics.js";
 import fs from "node:fs";
 import process from "node:process";
 import path from "node:path";
@@ -107,7 +108,7 @@ export class PornHubController {
       const currentProjectPath = process.cwd();
       const dataPath = path.join(currentProjectPath, `/data/pics/${tag}_pics`);
 
-      const picsPage = await PhubModel.getPicsPages(tag, page);
+      const picsPage = await PhubPics.getPicsPages(tag, page);
       const data = picsPage.data;
       fs.promises
         .readdir(dataPath)

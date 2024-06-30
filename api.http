@@ -47,16 +47,22 @@ GET http://localhost:4000/phub/test3
 GET https://scraping-server.vercel.app/phub/models-filter/sweetie
 
 ### GET ALL DATA (MODELS) FROM MONGODB 
-GET http://localhost:4000/phmongo/data/2
+GET http://localhost:4000/phmongo/data/3
 
 ### Search with MONGODB (local)
 GET http://localhost:4000/phmongo/search-models/Fun
 
-### Adding Data
+### Adding Data (Models Page)
 GET http://localhost:4000/phmongo/models
+
+### Adding Data (Models Info) HARD LOOP!!!!
+GET http://localhost:4000/phmongo/models-info
 
 ### Search with MONGODB data (prod)
 GET https://scraping-server.vercel.app/phmongo/search-models/sw
 
 ### Get All data from DB (prod)
 GET https://scraping-server.vercel.app/phmongo/data/2
+
+### Get model Info MONGODB
+GET http://localhost:4000/phmongo/model/Cory%20Chase

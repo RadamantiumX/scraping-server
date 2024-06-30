@@ -1,5 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import { PornHub } from "pornhub.js";
+import { URL_MODELS } from "../const/url.js";
 import fs from "node:fs";
 
 export class GetDataScrapController{
@@ -114,13 +115,15 @@ export class GetDataScrapController{
       }
       
  // Create a JSON file with model info detailed
+ // It's a "HARD LOOP" data recovery
   async pornHubApiData(req, res, next) {
     try {
       const pornhub = new PornHub();
       let results = [];
 
       // Start FOR
-      for (let i = 13000; i < 15000; i++) {
+      // Last SnapShot (let i = 13000; i < 15000; i++)
+      for (let i = 0; i <= URL_MODELS.length; i++) {
         const lastSlash = URL_MODELS[i].lastIndexOf("/"); // Last slash of the URL
         // const modelName = URL_MODELS[i].substring(lastSlash + 1)
 
