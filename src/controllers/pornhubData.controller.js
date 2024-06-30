@@ -106,7 +106,7 @@ export class PornHubController {
       const page = req.params.page;
       const tag = req.params.tag.toLowerCase();
       const currentProjectPath = process.cwd();
-      const dataPath = path.join(currentProjectPath, `/data/pics/${tag}_pics`);
+      const dataPath = path.join(currentProjectPath, `/data/pics/albums/${tag}_pics`);
 
       const picsPage = await PhubPics.getPicsPages(tag, page);
       const data = picsPage.data;

@@ -1,6 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import { PornHub } from "pornhub.js";
 import { URL_MODELS } from "../const/url.js";
+import { PhubPics } from "../models/phubPics.js";
 import fs from "node:fs";
 
 export class GetDataScrapController{
@@ -84,7 +85,7 @@ export class GetDataScrapController{
           const pages = 30;
           const pornhub = new PornHub();
           for(let i = 1; i <= pages; i++){
-          const data = await PhubModel.getPicsPages(tag, i);
+          const data = await PhubPics.getPicsPages(tag, i);
     
           for (let i = 0; i < data.data.length; i++) {
             results.push(data.data[i].url);
