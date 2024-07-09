@@ -66,3 +66,6 @@ GET https://scraping-server.vercel.app/phmongo/data/2
 
 ### Get model Info MONGODB
 GET http://localhost:4000/phmongo/model/Cory%20Chase
+
+### Pics content album
+GET http://localhost:4000/phub/pics/babe/21356572
