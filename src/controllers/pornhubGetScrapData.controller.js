@@ -81,8 +81,8 @@ export class GetDataScrapController{
       async getAlbumFromScraping(req, res, next) {
         try {
           let results = [];
-          const tag = "Sex";
-          const pages = 30;
+          const tag = "Tits";
+          const pages = 10;
           const pornhub = new PornHub();
           for(let i = 1; i <= pages; i++){
           const data = await PhubPics.getPicsPages(tag, i);
@@ -94,7 +94,7 @@ export class GetDataScrapController{
           for (let i = 0; i < results.length; i++) {
             const slashedIndex = results[i].lastIndexOf("/");
             const albumId = results[i].slice(slashedIndex + 1);
-            let filePath = `../../data/albums/sex/album_${albumId}.json`;
+            let filePath = `../../data/albums/tits/album_${albumId}.json`;
            
             const albumInfo = await pornhub.album(albumId)
               .then((data)=>{
