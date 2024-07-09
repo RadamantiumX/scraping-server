@@ -7,9 +7,9 @@ const pornhubController = new PornHubController()
 
 pornhubDataRouter.get('/models/:page', pornhubController.pornHubDataModels)
 pornhubDataRouter.get('/models-filter/:name', pornhubController.pornHubFilterModels)
-pornhubDataRouter.get('/url', pornhubController.PornHubUrlData)
-pornhubDataRouter.get('/model-info/:name', pornhubController.PornHubModelInfo)
-pornhubDataRouter.get('/pics/:page/:tag',pornhubController.PornHubPicTag)
+pornhubDataRouter.get('/url', pornhubController.pornHubUrlData)
+pornhubDataRouter.get('/model-info/:name', pornhubController.pornHubModelInfo)
+pornhubDataRouter.get('/pics/:page/:tag',pornhubController.pornHubAlbumTag)
 
 export default pornhubDataRouter
 

@@ -52,7 +52,7 @@ export class PornHubController {
   
 
   // Only for get data url from the JSON file
-  async PornHubUrlData(req, res, next) {
+  async pornHubUrlData(req, res, next) {
     try {
       const results = [];
       let filePath = `../../data/responses/url_models.json`;
@@ -83,7 +83,7 @@ export class PornHubController {
   }
 
   // Search Model Info
-  async PornHubModelInfo(req, res, next) {
+  async pornHubModelInfo(req, res, next) {
     try {
       const name = req.params.name;
 
@@ -101,7 +101,7 @@ export class PornHubController {
     }
   }
 
-  async PornHubPicTag(req, res, next) {
+  async pornHubAlbumTag(req, res, next) {
     try {
       const page = req.params.page;
       const tag = req.params.tag.toLowerCase();
@@ -122,6 +122,18 @@ export class PornHubController {
           console.log(err.message);
         });
     } catch (err) {
+      return next({
+        status: StatusCodes.BAD_REQUEST,
+        message: "Something went wrong",
+      });
+    }
+  }
+
+  async pornHubPics(req, res, next){
+    try{
+      
+
+    }catch(error){
       return next({
         status: StatusCodes.BAD_REQUEST,
         message: "Something went wrong",
