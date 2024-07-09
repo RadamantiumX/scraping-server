@@ -131,7 +131,10 @@ export class PornHubController {
 
   async pornHubPics(req, res, next){
     try{
-      
+      const tag = req.params.tag
+      const id = req.params.id
+      const album = await PhubPics.getAlbumContent(tag, id)
+      res.status(StatusCodes.OK).json(album)
 
     }catch(error){
       return next({

@@ -9,7 +9,8 @@ pornhubDataRouter.get('/models/:page', pornhubController.pornHubDataModels)
 pornhubDataRouter.get('/models-filter/:name', pornhubController.pornHubFilterModels)
 pornhubDataRouter.get('/url', pornhubController.pornHubUrlData)
 pornhubDataRouter.get('/model-info/:name', pornhubController.pornHubModelInfo)
-pornhubDataRouter.get('/pics/:page/:tag',pornhubController.pornHubAlbumTag)
+pornhubDataRouter.get('/album/:page/:tag',pornhubController.pornHubAlbumTag)
+pornhubDataRouter.get('/pics/:tag/:id', pornhubController.pornHubPics)
 
 export default pornhubDataRouter
 
